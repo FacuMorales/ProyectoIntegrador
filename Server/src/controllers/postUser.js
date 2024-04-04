@@ -8,9 +8,9 @@ const postUser = async (req, res) => {
                 where: {email},
                 defaults: {password}
             });
-            // if (!created) {
-            //     return res.status(400).send("El usuario ya existe");
-            // }
+            if (!created) {
+                return res.status(400).send("El usuario ya existe");
+            }
             return res.status(200).json(newUser);
         } catch (error) {
             return res.status(500).json({error: error.message});
