@@ -1,12 +1,12 @@
 const {Favorite} = require("../DB_connection");
 
 const postFav = async (req,res) => {
-    const {name, origin, status, image, species, gender} = req.body;
-    if (name && origin && status && image && species && gender){
+    const {id, name, origin, status, image, species, gender} = req.body;
+    if (id && name && origin && status && image && species && gender){
         try {
             const [newFavorite, created] = await Favorite.findOrCreate({
-                where: {name},
-                defaults: {origin, status, image, species, gender}
+                where: {id},
+                defaults: {name, origin, status, image, species, gender}
             });
             // if (!created) {
             //     return res.status(400).send("El favorito ya existe");
