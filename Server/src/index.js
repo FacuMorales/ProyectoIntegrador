@@ -1,7 +1,9 @@
 const PORT = 3001;
 const server = require("./app")
+const { conn } = require('./DB_connection');
 
-
-server.listen(PORT, () => {
-   console.log('Server hosteado en el puerto: ' + PORT);
+conn.sync({force: true}).then(()=>{
+   server.listen(PORT, () => {
+      console.log('Server hosteado en el puerto: ' + PORT);
+   });
 });
